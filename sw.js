@@ -1,4 +1,4 @@
-var CACHE = 'lvlong-v1.0';
+var CACHE = 'lvlong-v1.1';
 var URLS = ['/LVLongv3/', '/LVLongv3/index.html'];
 
 self.addEventListener('install', function(e) {
