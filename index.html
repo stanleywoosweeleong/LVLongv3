@@ -39,10 +39,10 @@ body { font-family: 'Outfit', 'Noto Sans SC', sans-serif; background: var(--crea
 
 /* HEADER */
 .header { background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-primary) 60%, var(--green-mid) 100%); padding: 0; padding-top: env(safe-area-inset-top, 0px); position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-md); }
-.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; max-width: 900px; margin: 0 auto; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; max-width: 900px; margin: 0 auto; }
 .logo-area { display: flex; align-items: center; gap: 10px; }
-.logo-text h1 { font-size: 17px; font-weight: 700; color: var(--white); line-height: 1.1; letter-spacing: -0.3px; }
-.logo-text p { font-size: 11px; color: var(--green-pale); font-weight: 400; letter-spacing: 0.3px; }
+.logo-text h1 { font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.1; letter-spacing: -0.3px; white-space: nowrap; }
+.logo-text p { font-size: 10px; color: var(--green-pale); font-weight: 400; letter-spacing: 0.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
 .header-actions { display: flex; gap: 8px; align-items: center; }
 .lang-toggle { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 20px; padding: 5px 0; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; width: 52px; text-align: center; }
 .lang-toggle:hover { background: rgba(255,255,255,0.25); }
