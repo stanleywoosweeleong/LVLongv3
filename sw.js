@@ -1,4 +1,4 @@
-var CACHE = 'lvlong-v1.2';
+var CACHE = 'lvlong-v1.1';
 var URLS = ['/LVLongv3/', '/LVLongv3/index.html'];
 
 self.addEventListener('install', function(e) {
@@ -21,15 +21,17 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
+  // Network first — always try to get latest, fall back to cache
   e.respondWith(
-    caches.match(e.request).then(function(cached) {
-      if (cached) return cached;
-      return fetch(e.request).then(function(resp) {
-        if (!resp || resp.status !== 200 || resp.type === 'opaque') return resp;
-        var clone = resp.clone();
-        caches.open(CACHE).then(function(c) { c.put(e.request, clone); });
-        return resp;
-      }).catch(function() { return caches.match('/LVLongv3/index.html'); });
+    fetch(e.request).then(function(resp) {
+      if (!resp || resp.status !== 200 || resp.type === 'opaque') return resp;
+      var clone = resp.clone();
+      caches.open(CACHE).then(function(c) { c.put(e.request, clone); });
+      return resp;
+    }).catch(function() {
+      return caches.match(e.request).then(function(cached) {
+        return cached || caches.match('/LVLongv3/index.html');
+      });
     })
   );
 });
