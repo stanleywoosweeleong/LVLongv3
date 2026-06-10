@@ -1761,12 +1761,18 @@ if (pcEl) pcEl.textContent = lang === 'zh' ? `${PRODUCTS.length} 个产品` : `$
 (function() {
   // Manifest and icons served as static files
 
-  // Register service worker from sw.js (written alongside this file)
+  // Register service worker — force update on every load
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('./sw.js', { scope: '/LVLongv3/' })
-        .then(function(r){ console.log('SW registered:', r.scope); })
-        .catch(function(e){ console.log('SW unavailable (offline mode via browser cache)'); });
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        regs.forEach(function(reg) { reg.unregister(); });
+      });
+      navigator.serviceWorker.register('./sw.js?v=1.1', { scope: '/LVLongv3/' })
+        .then(function(r) {
+          r.update();
+          console.log('SW registered:', r.scope);
+        })
+        .catch(function(e){ console.log('SW:', e); });
     });
   }
 
